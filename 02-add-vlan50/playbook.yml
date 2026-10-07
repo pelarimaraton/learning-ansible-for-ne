@@ -1,0 +1,12 @@
+---
+- name: Menambah VLAN 50 di semua switch
+  hosts: switches
+  gather_facts: false
+
+  tasks:
+    - name: Buat VLAN 50
+      cisco.ios.ios_config:
+        parents: vlan 50
+        lines:
+          - name TRAINING
+        save_when: modified

@@ -1,0 +1,28 @@
+name: sw03-03
+mgmt:
+  network: sw03-03-mgmt
+  ipv4-subnet: 172.31.33.0/24
+
+topology:
+  defaults:
+    kind: cisco_iol
+    type: L2
+    image: vrnetlab/cisco_iol:L2-17.18.02
+  nodes:
+    spine1:
+      mgmt-ipv4: 172.31.33.11
+    spine2:
+      mgmt-ipv4: 172.31.33.12
+    leaf1:
+      mgmt-ipv4: 172.31.33.13
+    leaf2:
+      mgmt-ipv4: 172.31.33.14
+    leaf3:
+      mgmt-ipv4: 172.31.33.15
+  links:
+    - endpoints: ["spine1:Ethernet0/1", "leaf1:Ethernet0/1"]
+    - endpoints: ["spine1:Ethernet0/2", "leaf2:Ethernet0/1"]
+    - endpoints: ["spine1:Ethernet0/3", "leaf3:Ethernet0/1"]
+    - endpoints: ["spine2:Ethernet0/1", "leaf1:Ethernet0/2"]
+    - endpoints: ["spine2:Ethernet0/2", "leaf2:Ethernet0/2"]
+    - endpoints: ["spine2:Ethernet0/3", "leaf3:Ethernet0/2"]

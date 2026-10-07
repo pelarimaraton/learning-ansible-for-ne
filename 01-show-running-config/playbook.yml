@@ -1,0 +1,15 @@
+---
+- name: Melihat konfigurasi semua switch
+  hosts: switches
+  gather_facts: false
+
+  tasks:
+    - name: Jalankan show running-config
+      cisco.ios.ios_command:
+        commands:
+          - show running-config
+      register: hasil
+
+    - name: Tampilkan hasil
+      ansible.builtin.debug:
+        var: hasil.stdout_lines
