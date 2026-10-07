@@ -1,0 +1,52 @@
+name: spine-leaf
+
+mgmt:
+  network: spine-leaf-mgmt
+  ipv4-subnet: 172.30.30.0/24
+
+topology:
+  nodes:
+
+    spine01:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.18.02
+      mgmt-ipv4: 172.30.30.11
+
+    spine02:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.18.02
+      mgmt-ipv4: 172.30.30.12
+
+    leaf01:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.18.02
+      mgmt-ipv4: 172.30.30.13
+
+    leaf02:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.18.02
+      mgmt-ipv4: 172.30.30.14
+
+    leaf03:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.18.02
+      mgmt-ipv4: 172.30.30.15
+
+    leaf04:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.18.02
+      mgmt-ipv4: 172.30.30.16
+
+  links:
+
+    # SPINE01
+    - endpoints: ["spine01:Ethernet0/1", "leaf01:Ethernet0/1"]
+    - endpoints: ["spine01:Ethernet0/2", "leaf02:Ethernet0/1"]
+    - endpoints: ["spine01:Ethernet0/3", "leaf03:Ethernet0/1"]
+    - endpoints: ["spine01:Ethernet1/0", "leaf04:Ethernet0/1"]
+
+    # SPINE02
+    - endpoints: ["spine02:Ethernet0/1", "leaf01:Ethernet0/2"]
+    - endpoints: ["spine02:Ethernet0/2", "leaf02:Ethernet0/2"]
+    - endpoints: ["spine02:Ethernet0/3", "leaf03:Ethernet0/2"]
+    - endpoints: ["spine02:Ethernet1/0", "leaf04:Ethernet0/2"]

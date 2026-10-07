@@ -1,0 +1,19 @@
+name: ansible-iosxe-lab
+
+mgmt:
+  network: ansible-mgmt
+  ipv4-subnet: 172.30.30.0/24
+
+topology:
+  nodes:
+    r1:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.18.02
+      mgmt-ipv4: 172.30.30.11
+    r2:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.18.02
+      mgmt-ipv4: 172.30.30.12
+
+  links:
+    - endpoints: [ "r1:Ethernet0/1", "r2:Ethernet0/1" ]
